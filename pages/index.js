@@ -1,8 +1,9 @@
 import React from 'react'
+import Layout from '../layout/layout'
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <Layout>LandingPage</Layout>
   )
 }
 

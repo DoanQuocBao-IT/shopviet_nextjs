@@ -2,11 +2,11 @@ import React from 'react'
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
-import { LayoutProvider } from '../layout/context/layoutcontext'
+import Layout from '../components/Layout'
 export default function MyApp({ Component, pageProps }) {
   return (
-    <LayoutProvider>
+    <Layout>
       <Component {...pageProps} />
-    </LayoutProvider>
+    </Layout>
   )
 }

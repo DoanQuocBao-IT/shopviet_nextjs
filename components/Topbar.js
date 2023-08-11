@@ -3,11 +3,20 @@ import React, { useState } from 'react'
 import { Menubar } from 'primereact/menubar'
 import { Button } from 'primereact/button'
 import { Ripple } from 'primereact/ripple'
+import { InputText } from 'primereact/inputtext'
+import { useRouter } from 'next/router'
 
 import { classNames } from 'primereact/utils'
-import { CSSTransition } from 'react-transition-group'
+import Header from './Header'
 
 const Topbar = () => {
+  const [isActive, setIsActive] = useState('/')
+  const [menuActive, setMenuActive] = useState(false)
+  const [menuActiveMobile, setMenuActiveMobile] = useState(false)
+  const router = useRouter()
+  const isSignInPage = router.pathname === '/signin'
+  const isSignUpPage = router.pathname === '/signup'
+
   const items = [
     {
       id: 1,
@@ -29,12 +38,6 @@ const Topbar = () => {
       to: '/brand',
     },
     {
-      id: 4,
-      label: 'Product',
-      icon: 'pi pi-fw pi-users',
-      to: '/product',
-    },
-    {
       id: 5,
       icon: 'pi pi-fw pi-shopping-bag',
       to: '/cart',
@@ -43,14 +46,13 @@ const Topbar = () => {
   const processModels = (model) => {
     const menuItemTemplate = (item) => (
       <React.Fragment>
-        <CSSTransition
+        <div
           classNames='layout-submenu-wrapper'
           timeout={{ enter: 1000, exit: 450 }}
           in={true}
         >
           <Link
             href={item.to || '/'}
-            role='menuitem'
             className='p-menuitem-link'
             // style={
             //   item.to === isActive
@@ -62,7 +64,7 @@ const Topbar = () => {
             <i className={classNames('layout-menuitem-icon', item.icon)}></i>
             <span className='layout-menuitem-text'>{item.label}</span>
           </Link>
-        </CSSTransition>
+        </div>
         <Ripple />
       </React.Fragment>
     )
@@ -86,21 +88,29 @@ const Topbar = () => {
   }
   const startMenu = () => {
     return (
-      <div className=''>
+      <div className='menu-search-wrapper'>
         <Link href='/'>
           <img
             src={`/layout/images/logo.png`}
-            width='47.22px'
-            height='35px'
+            width='auto'
+            height='50px'
             widt={'true'}
             alt='logo'
           />
         </Link>
+        <span className='p-input-icon-left'>
+          <i className='pi pi-search' />
+          <InputText placeholder='Search' id='custom-search' />
+        </span>
       </div>
     )
   }
-  const handleLogin = () => {}
-  const handleRegister = () => {}
+  const handleLogin = () => {
+    router.push('/signin')
+  }
+  const handleRegister = () => {
+    router.push('/signup')
+  }
   const endMenuGuest = () => (
     <React.Fragment>
       <Button
@@ -119,8 +129,14 @@ const Topbar = () => {
       />
     </React.Fragment>
   )
+  if (isSignInPage) {
+    return <Header value='Đăng nhập' />
+  }
+  if (isSignUpPage) {
+    return <Header value='Đăng ký' />
+  }
   return (
-    <div>
+    <div className='centered-content'>
       <Menubar
         model={processModels(items)}
         start={startMenu}

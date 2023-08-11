@@ -1,0 +1,39 @@
+.p-menubar-root-list {
+    display: flex;
+    margin: 0;
+    padding: 0;}
+.p-menubar{
+    margin-top: 1rem;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+}
+.menu-search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.p-menubar-start{
+    margin-right: 2rem;
+}
+.p-menubar-end{
+    margin-right: 2rem;
+}
+#custom-search.p-inputtext{
+    border-radius: 50px;
+    width: 30rem;
+}
+#text-header{
+    font-size: 1.5rem;
+    color: $text-color;
+}
+#header-wrapper{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 15%;
+    gap: 1rem;
+}

@@ -1,0 +1,29 @@
+@import "../layout/variables";
+#target-wrapper {
+    background-color: #f5f5f5;
+    justify-content: center;
+    padding: 2rem 0;
+    border-top: 1px solid $text-color;
+}
+#target-container {
+    display: flex;
+    justify-content: space-between;
+    margin:  auto;
+    width: 75%;
+    background-color: $white-color;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+#target-item {
+    padding: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+#target-item span {
+    font-size: 1.2em;
+    font-weight: bold;}
+#icon-large {
+    font-size: 5em;
+}
+  

@@ -1,0 +1,27 @@
+#rating-child {
+    margin: 0 auto;
+    height: auto;
+}
+#rating {
+    gap: 0.5rem;
+}
+#review {
+    margin-left: 2rem;
+}
+#sale-off-badge {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f54242; 
+    color: white; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    font-weight: bold;
+    position: absolute; // This will allow it to be positioned over an image
+    top: 10px; // Positioning from the top
+    right: 30px; // Positioning from the right
+    z-index: 1; // Ensure it's above the image
+    font-size: 1em;
+}
+

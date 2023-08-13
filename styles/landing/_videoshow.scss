@@ -1,0 +1,67 @@
+#video-container {
+    background-color: #f5f5f5;
+}
+#child-button {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    width: 100%;
+    height: auto;
+}
+#child-button button {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-color: black ;
+}
+#child-button > :first-child {
+    background-color: black ;
+    color: white;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+
+    transition: box-shadow 0.3s ease;
+}
+#child-button > :last-child {
+    background-color: white ;
+    color: black;
+}
+#multi-color-border {
+    position: relative; 
+    width: 180px; /* Ví dụ kích thước, bạn có thể thay đổi */
+    height: 40px;
+    margin-bottom: 45px; /* Tạo khoảng trống cho bóng màu */
+    color: white; /* Màu chữ cho button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px; /* Bạn cũng có thể thêm bo tròn cho button nếu muốn */
+}
+#multi-color-border >button {
+    background-color: black;
+    border-radius: 20px;
+}
+#multi-color-border >button {
+    background-color: black;
+}
+#multi-color-border::before {
+    content: "";
+    position: absolute;
+    top: -2px; /* Đặt giá trị âm bằng độ dày viền */
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 10px solid;
+    border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+    z-index: -1; /* Đảm bảo bóng màu nằm dưới button */
+
+    /* Tạo bóng màu */
+    filter: blur(20px); /* Giảm giá trị blur để bóng màu không lệch quá xa */
+}

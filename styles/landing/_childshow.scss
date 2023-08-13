@@ -1,0 +1,95 @@
+.p-carousel .p-carousel-indicators .p-carousel-indicator button {
+    background-color: #ffffff1c;
+    border-radius: 50px;
+}
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+    background-color: #ffffff94;
+    border: none;
+}
+#child-container {
+    background-color: #f5f5f5;
+    align-items: center;
+    justify-self: center;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+    width: 90%;
+    height: auto;
+}
+
+#image-container img{
+    border-radius: 15px 15px 0 0;
+    display: block;
+    width: 100%;
+    height: 17rem;
+    object-fit: cover; 
+}
+#card {
+    width: 60%;
+    align-items: center;
+    justify-self: center;
+    margin: 0 auto;
+}
+#info-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+#info-child > * { 
+    margin-top: 10px;
+    margin-bottom: 10px; 
+}
+#info-child h4 {
+    font-size: 2rem;
+    margin-top: 1rem;
+    width: 10rem;
+}
+#info-child p {
+    font-size: 0.75rem;
+    width: 10rem;
+}
+#info-child h6 {
+    font-size: 1.5rem;
+    margin-top: 0rem;
+    width: 10rem;
+}
+#child-button {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    width: 100%;
+    height: auto;
+}
+#child-button button {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-color: black ;
+}
+#child-button > :first-child {
+    background-color: black ;
+    color: white;
+}
+#child-button > :last-child {
+    background-color: white ;
+    color: black;
+}
+
+
+
+
+
+
+

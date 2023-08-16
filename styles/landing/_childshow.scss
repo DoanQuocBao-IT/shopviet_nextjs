@@ -33,6 +33,37 @@
     justify-self: center;
     margin: 0 auto;
 }
+#child-button {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    width: 100%;
+    height: auto;
+}
+#child-button button {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-color: black ;
+}
+#child-button > :first-child {
+    background-color: black ;
+    color: white;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+    border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+
+    transition: box-shadow 0.3s ease;
+}
+#child-button > :last-child {
+    background-color: white ;
+    color: black;
+}
 #info-child {
     display: flex;
     flex-direction: column;
@@ -62,7 +93,6 @@
 #child-button {
     display: flex;
     align-items: center;
-    align-items: center;
     justify-content: center;
     gap: 1rem;
     margin: 1rem auto;
@@ -85,6 +115,59 @@
 #child-button > :last-child {
     background-color: white ;
     color: black;
+}
+
+
+
+
+
+#multi-color-border-childshow {
+    position: relative; 
+    width: 8rem;
+    height: 3rem;
+    margin-bottom: 45px; /* Tạo khoảng trống cho bóng màu */
+    color: white; /* Màu chữ cho button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px; /* Bạn cũng có thể thêm bo tròn cho button nếu muốn */
+    position: relative; /* hoặc absolute, fixed, hoặc sticky tùy theo ngữ cảnh của bạn */
+    z-index: 1;
+    margin-top: 1rem;
+}
+#multi-color-border-childshow >button {
+    width: 100%;
+    height: 3rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-color: black ;
+}
+
+#multi-color-border-childshow::before {
+    content: "";
+    position: absolute;
+    top: -2px; /* Đặt giá trị âm bằng độ dày viền */
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 10px solid;
+    border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    border-image-slice: 1;
+    z-index: -1; /* Đảm bảo bóng màu nằm dưới button */
+
+    /* Tạo bóng màu */
+    filter: blur(25px); /* Giảm giá trị blur để bóng màu không lệch quá xa */
+}
+#button-dark {
+    background-color: #000000;
+    color: #ffffff;
+}
+#button-white {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000; /* Viền màu đen có độ dày 2px */
 }
 
 

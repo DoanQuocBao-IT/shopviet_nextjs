@@ -2,6 +2,9 @@ import React from 'react'
 import Targets from './Targets'
 import Slideshow from './Slideshow'
 import Videoshow from './Videoshow'
+import Customer from './Customer'
+import ProductInfo from './ProductInfo'
+import StatisticsInfo from './StatisticsInfo'
 
 const LandingPage = () => {
   const data = {
@@ -72,6 +75,9 @@ const LandingPage = () => {
   return (
     <div>
       <Slideshow data={data.overview} />
+      <ProductInfo data={data.overview}/>
+      <StatisticsInfo />
+      <Customer/>
       <Videoshow/>
       <Targets/>
     </div>

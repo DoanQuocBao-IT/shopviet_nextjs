@@ -61,8 +61,14 @@ const Childshow = ({ data, interval = 3000 }) => {
             severity={getSeverity(product)}
           ></Tag> */}
           <div id='child-button'>
-            <Button label='Add to cart' className='multi-color-border' />
-            <Button label='Buy now' className='multi-color-border' />
+            <div id='multi-color-border-childshow'>
+              <Button label='Add to cart' severity='secondary'
+                raised id='button-dark'/>
+            </div>
+            <div id='multi-color-border-childshow'>
+              <Button label='Buy now' severity='secondary'
+                raised id='button-white'/>
+            </div>
           </div>
         </div>
       </div>

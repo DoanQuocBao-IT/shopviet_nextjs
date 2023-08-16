@@ -1,4 +1,4 @@
-#video-container {
+#customer-container {
 }
 #title_item {
     display: flex;
@@ -13,18 +13,18 @@
 #title_item >h1 {
     font-size: 3rem;
     margin-top: 0;
-    width: 40rem;
+    width: 45rem;
     height: auto;
     text-align: center;
 }
-#video-button {
+#customer-button {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%; 
     gap: 3rem;
 }
-#video-content {
+#customer-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,17 +81,29 @@
     border: 2px solid #000; /* Viền màu đen có độ dày 2px */
 }
 
-
-#video-item {
+#customer-item {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: auto;
+    flex-direction: column;
 }
-#video {
-    position: relative;
-    width: 57rem; /* Ví dụ kích thước, bạn có thể thay đổi */
+#image {
+    position: absolute;
+    width: 77rem;
+    height: 0rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    gap: 4rem;
+    z-index: 2;
+}
+#customer {
+    position: relative; 
+    width: 57rem;
     height: 30rem;
     color: white;
     display: flex;
@@ -99,9 +111,9 @@
     justify-content: center;
     border-radius: 15px;
     z-index: 1;
-    margin: 2rem;
+    margin-top: 2rem;
 }
-#video >iframe {
+#customer >div {
     width: 100%;
     height: 100%;
     border-radius: 15px;
@@ -111,18 +123,32 @@
     justify-content: center;
 }
 
-#video::before {
+#customer::before {
     content: "";
     position: absolute;
     top: -1px; /* Đặt giá trị âm bằng độ dày viền */
     left: -1px;
     right: -1px;
     bottom: -1px;
-    border: 10px solid;
+    border: 20px solid;
     border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
     border-image-slice: 1;
     z-index: -1; /* Đảm bảo bóng màu nằm dưới button */
 
     /* Tạo bóng màu */
-    filter: blur(30px); /* Giảm giá trị blur để bóng màu không lệch quá xa */
+    filter: blur(50px); /* Giảm giá trị blur để bóng màu không lệch quá xa */
 }
+#feedback-image {
+    width: 25rem;
+    height: 25rem;
+}
+#feedback-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    margin-bottom: 4rem;
+}
+

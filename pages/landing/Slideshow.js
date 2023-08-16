@@ -23,9 +23,15 @@ const Slideshow = ({ data, interval = 3000 }) => {
           <div id='slide-caption'>
             <div id='slide-name'>{slide.name}</div>
             <div>{slide.content}</div>
-            <div>
-              <Button id='button-slide' label='Explore all artwork' />
+            <div id='multi-color-border'>
+              <Button
+                id='button-dark'
+                label='Explore all artwork'
+                severity='secondary'
+                raised
+              />
             </div>
+
             <div id='overview-slide'>
               <div>
                 <span>{data.total_brand}k+</span>

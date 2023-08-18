@@ -5,6 +5,7 @@ import 'primeicons/primeicons.css'
 import '../styles/layout/layout.scss'
 import Layout from '../components/Layout'
 import '../styles/landing/layout.scss'
+import '../styles/home/layout.scss'
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout>

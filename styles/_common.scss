@@ -24,4 +24,17 @@
     z-index: 1; // Ensure it's above the image
     font-size: 1em;
 }
+#title {
+    height: auto;
+    margin: 2rem 0;
+}
+#title p {
+    width: 25rem;
+    margin: 0.5rem 0; 
+}
+#title h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem 0; 
+}
 

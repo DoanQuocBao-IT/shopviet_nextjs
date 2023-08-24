@@ -4,6 +4,7 @@ import { Carousel } from 'primereact/carousel'
 import { Tag } from 'primereact/tag'
 import SaleOff from '../../components/SaleOff'
 import Rating from '../../components/Rating'
+import Title from '../../components/Title'
 const ProductList = ({ data, interval = 3000 }) => {
   const productinfo = data
   const responsiveOptions = [
@@ -79,8 +80,8 @@ const ProductList = ({ data, interval = 3000 }) => {
   }
 
   return (
-    <div id='card-productinfo'>
-
+    <div id='card-home-container'>
+      <Title title='Product List' subTitle=''/>
       <Carousel id='custom-carousel'
         value={productinfo} 
         numScroll={1} 

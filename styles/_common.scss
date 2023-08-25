@@ -37,4 +37,16 @@
     font-weight: bold;
     margin: 0.5rem 0; 
 }
-
+#custom-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+  
+.custom-carousel-content {
+    display: grid;
+    grid-template-columns: repeat(var(--num-columns, 6), 1fr); 
+    gap: 1rem;
+    transition: transform 0.5s ease-in-out;
+}

@@ -82,7 +82,7 @@ const ProductList = ({ data, interval = 3000 }) => {
   return (
     <div id='card-home-container'>
       <Title title='Product List' subTitle=''/>
-      <Carousel id='custom-carousel'
+      <Carousel id='custom-carousel-product'
         value={productinfo} 
         numScroll={1} 
         numVisible={3} 

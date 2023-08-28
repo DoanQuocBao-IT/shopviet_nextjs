@@ -1,39 +1,79 @@
-.p-menubar-root-list {
-    display: flex;
-    margin: 0;
-    padding: 0;}
-.p-menubar{
-    margin-top: 1rem;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
+// .p-menubar-root-list {
+//     display: flex;
+//     margin: 0;
+//     padding: 0;}
+// .p-menubar{
+//     margin-top: 1rem;
+//     padding: 0;
+//     align-items: center;
+//     justify-content: center;
+//     background-color: transparent;
+//     border: none;
+// }
+// .menu-search-wrapper {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     gap: 1rem;
+// }
+// .p-menubar-start{
+//     margin-right: 2rem;
+// }
+// .p-menubar-end{
+//     margin-right: 2rem;
+// }
+// #custom-search.p-inputtext{
+//     border-radius: 50px;
+//     width: 30rem;
+// }
+// #text-header{
+//     font-size: 1.5rem;
+//     color: $text-color;
+// }
+// #header-wrapper{
+//     margin-top: 1rem;
+//     display: flex;
+//     align-items: center;
+//     margin-left: 15%;
+//     gap: 1rem;
+// }
+#centered-content {
     background-color: transparent;
-    border: none;
-}
-.menu-search-wrapper {
+    border-bottom: 1px solid $border-color;
+    height: 5rem;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+}
+#start-menu-container {
+    background-color: rgb(59, 182, 182);
+    height: 100%;
+    width: 30%;
+    display: flex;
     justify-content: center;
-    gap: 1rem;
-}
-.p-menubar-start{
-    margin-right: 2rem;
-}
-.p-menubar-end{
-    margin-right: 2rem;
-}
-#custom-search.p-inputtext{
-    border-radius: 50px;
-    width: 30rem;
-}
-#text-header{
-    font-size: 1.5rem;
-    color: $text-color;
-}
-#header-wrapper{
-    margin-top: 1rem;
-    display: flex;
     align-items: center;
-    margin-left: 15%;
-    gap: 1rem;
+    gap: 0.5rem;
 }
+#menu-container {
+    background-color: rgb(143, 43, 113);
+    height: 100%;
+    width: 40%;
+}
+#end-menu-container {
+    background-color: rgb(39, 155, 39);
+    height: 100%;
+    width: 30%;
+}
+#logo-container {
+    height: 80%;
+    width: auto;
+    background-color: transparent; 
+}
+#logo-container img {
+    border-radius: 50%; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+

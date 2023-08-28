@@ -1,8 +1,12 @@
+#carousel-seller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cột với độ rộng bằng nhau */
-    grid-template-rows: repeat(3, auto);   /* 3 dòng với độ cao tự động dựa trên nội dung */
-    gap: 1rem;                             /* khoảng cách giữa các hàng và cột */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; 
 }
 
 #seller-item {
@@ -12,7 +16,7 @@
     align-items: center;
     gap: 1rem;
     height: 7rem;
-    width: 100%;
+    width: 22rem;
 }
 
 #avatar {

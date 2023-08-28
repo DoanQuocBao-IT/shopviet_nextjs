@@ -55,6 +55,7 @@ const Brands = ({ data }) => {
           scrollColumns={1}
           responsiveOptions={responsiveOptions}
           itemTemplate={brandTemplate}
+          nextPrevButton={true}
         />
       </div>
     </div>

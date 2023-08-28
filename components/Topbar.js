@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { Menubar } from 'primereact/menubar'
 import { Button } from 'primereact/button'
 import { Ripple } from 'primereact/ripple'
 import { InputText } from 'primereact/inputtext'
@@ -8,6 +7,8 @@ import { useRouter } from 'next/router'
 
 import { classNames } from 'primereact/utils'
 import Header from './Header'
+import Search from './Search'
+import Menubar from './Menubar'
 
 const Topbar = () => {
   const [isActive, setIsActive] = useState('/')
@@ -21,7 +22,7 @@ const Topbar = () => {
     {
       id: 1,
       label: ' Home',
-      icon: 'pi pi-fw pi-home',
+      icon: 'fa-solid fa-house-blank',
       to: '/',
     },
 
@@ -135,13 +136,57 @@ const Topbar = () => {
   if (isSignUpPage) {
     return <Header value='Đăng ký' />
   }
+  const menu = [
+    {
+      id: 1,
+      label: 'Landings',
+      icon: 'fas fa-home',
+      iconActive: 'fas fa-home',
+      to: '/landing',
+    },
+
+    {
+      id: 2,
+      label: ' Homepage',
+      icon: 'fas fa-home',
+      iconActive: 'fas fa-home',
+      to: '/',
+    },
+    {
+      id: 3,
+      label: 'Flash Sale',
+      icon: 'fas fa-star',
+      iconActive: 'fas fa-star',
+      to: '/flashsale',
+    },
+    {
+      id: 4,
+      label: 'Product',
+      icon: 'fas fa-bookmark',
+      iconActive: 'fas fa-bookmark',
+      to: '/product',
+    },
+  ]
+
   return (
-    <div className='centered-content'>
-      <Menubar
+    <div id='centered-content'>
+      <div id='start-menu-container'>
+        <div id='logo-container'>
+          <Link href='/'>
+            <img src={`/layout/images/logo.png`} alt='' />
+          </Link>
+        </div>
+        <Search />
+      </div>
+      <div id='menu-container'>
+        <Menubar menu={menu} />
+      </div>
+      <div id='end-menu-container'></div>
+      {/* <Menubar
         model={processModels(items)}
         start={startMenu}
         end={endMenuGuest}
-      />
+      /> */}
     </div>
   )
 }

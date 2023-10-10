@@ -1,0 +1,81 @@
+.custom-product-content {
+    display: grid;
+    grid-template-columns: repeat(var(--num-columns, 5), 1fr); 
+    gap: 2rem;
+    padding: 1rem;
+    transition: transform 0.5s ease-in-out;
+    width: 80%;
+}
+#list-product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray-color;  
+    border-radius: 0.5rem;
+}
+#image-product-container {
+    position: relative;
+    height: 15rem;
+    width: 100%;
+}
+#image-product-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#info-product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+#name-product {
+    width: 95%;
+    height: 4.5rem;
+}
+#name-product h4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#price-sale-product-container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 0.5rem;
+}
+#original-price {
+    text-decoration: line-through;
+    color: $black-color;
+    margin-left: 1rem;
+}
+#discounted-price {
+    color:$red-color;
+}
+#rating-sold-product {
+    width: 95%;
+    display: flex;
+    justify-content: start;
+    gap: 0.5rem;
+}
+#address-product {
+    width: 95%;
+    display: flex;
+    justify-content: start;
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+}
+#saleoff-product-container {
+    position: absolute; 
+    top: 1rem; 
+    right: 1rem; 
+    background-color: $red-color; 
+    color: $white-color; 
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+}

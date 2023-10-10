@@ -47,7 +47,7 @@
     align-items: center;
 }
 #start-menu-container {
-    background-color: rgb(59, 182, 182);
+    background-color: $primary-color;
     height: 100%;
     width: 30%;
     display: flex;
@@ -56,18 +56,25 @@
     gap: 0.5rem;
 }
 #menu-container {
-    background-color: rgb(143, 43, 113);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color;
     height: 100%;
     width: 40%;
 }
 #end-menu-container {
-    background-color: rgb(39, 155, 39);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: $primary-color;
     height: 100%;
     width: 30%;
 }
 #logo-container {
-    height: 80%;
-    width: auto;
+    height: 4rem;
+    width: 4rem;
     background-color: transparent; 
 }
 #logo-container img {

@@ -3,11 +3,12 @@
     height: auto;
 }
 #rating {
-    gap: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
 }
-#review {
-    margin-left: 2rem;
-}
+
 #sale-off-badge {
     width: 60px;
     height: 60px;
@@ -49,4 +50,8 @@
     grid-template-columns: repeat(var(--num-columns, 6), 1fr); 
     gap: 1rem;
     transition: transform 0.5s ease-in-out;
+}
+.link-decorations {
+    text-decoration: none;
+    color: black;
 }

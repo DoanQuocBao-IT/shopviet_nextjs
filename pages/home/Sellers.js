@@ -18,7 +18,7 @@ const Sellers = ({ seller }) => {
     },
     {
       breakpoint: 560,
-      columnNumber: 1,
+      columnNumber: 2,
     },
   ]
   const sellerTemplate = (sellers) => {

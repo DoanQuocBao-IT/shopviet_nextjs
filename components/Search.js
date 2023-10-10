@@ -23,20 +23,7 @@ const Search = () => {
       debouncedSearch(search)
     }
   }, [search])
-  useEffect(() => {
-    window.addEventListener('resize', function () {
-      const searchEl = document.getElementById('search')
-      const width = window.innerWidth
-
-      if (searchEl.style.width >'25rem') {
-        searchEl.style.width = '1rem'
-        searchEl.style.padding = '0 2rem'
-        searchEl.style.transition = 'width 0.03s ease-in-out'
-      } else {
-        searchEl.style.width = '25rem'
-      }
-    })
-  }, [])
+  
   return (
     <div id='search-container'>
       <i

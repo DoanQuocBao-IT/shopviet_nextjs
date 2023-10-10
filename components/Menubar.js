@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 
 const Menubar = ({ menu }) => {
   const [focus, setFocus] = useState(0)
-  console.log(focus)
   return (
     <div id='menu-icon-container'>
       {menu.map((item) => (

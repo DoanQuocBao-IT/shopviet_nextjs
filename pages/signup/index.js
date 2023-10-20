@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button'
 import { Controller, useForm } from 'react-hook-form'
@@ -7,8 +7,16 @@ import { classNames } from 'primereact/utils'
 import Form, { Field } from '../../components/react-hook-form/Form'
 import { Checkbox } from 'primereact/checkbox'
 import Link from 'next/link'
+import apiInstance from '../../api/apiInstance'
+import { useRouter } from 'next/router'
+import { SelectButton } from 'primereact/selectbutton'
+import { useToast } from '../../components/contexts/ToastContext'
+import { LoadingContext } from '../../components/contexts/LoadingContext'
 
 const SignUpPage = () => {
+  const setLoading = useContext(LoadingContext)
+  const showToast = useToast().showToast
+  const router = useRouter()
   const defaultValues = {
     checked: false,
   }
@@ -18,7 +26,32 @@ const SignUpPage = () => {
     formState: { errors },
     handleSubmit,
   } = useForm()
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    handleRegister(data)
+  }
+  const handleRegister = async (data) => {
+    setLoading(true)
+    try {
+      let { accept, confirmPassword, ...rest } = data
+      const response = await apiInstance.post('/auth/register', rest)
+      console.log('response', response.data)
+      if (response.status === 200) {
+        showToast('success', 'Register successfully', 'Success')
+        router.push('/signin')
+      }else{
+        showToast('warn', 'Confirm account information email', response.data.detail)
+      }
+    } catch (error) {
+      showToast('error', 'Register failed', 'Error')
+    }
+    setLoading(false)
+  }
+  const [value, setValue] = useState(null)
+  const items = [
+    { name: 'Buyer', value: 'buyer' },
+    { name: 'Seller', value: 'seller' },
+    { name: 'Deliverer', value: 'shipper' },
+  ]
   return (
     <div id='signup-container'>
       <div id='signup-form'>
@@ -31,7 +64,7 @@ const SignUpPage = () => {
               <div className='col-12' id='width-100-center-signup'>
                 <Field
                   name='username'
-                  label='Email address'
+                  label='Username'
                   control={control}
                   required
                   errors={errors}
@@ -44,7 +77,7 @@ const SignUpPage = () => {
               <div className='col-12' id='width-100-center-signup'>
                 <Field
                   name='password'
-                  label='Password(8 characters minimum)'
+                  label='Password'
                   control={control}
                   required
                   errors={errors}
@@ -53,23 +86,87 @@ const SignUpPage = () => {
                 </Field>
               </div>
             </div>
-            <div className='grid' id='top-1-signup'>
-              <div className='col-6' id='checkbox'>
+            <div className='grid' id='width-100-center-signup'>
+              <div className='col-12' id='width-100-center-signup'>
                 <Field
-                  name='remember'
-                  label='Remember me'
+                  name='confirmPassword'
+                  label='Confirm Password'
                   control={control}
+                  required
                   errors={errors}
                 >
+                  <Password type='password' style={{ width: '100%' }} />
+                </Field>
+              </div>
+            </div>
+            <div className='grid' id='width-100-center-signup'>
+              <div className='col-12' id='width-100-center-signup'>
+                <Field
+                  name='fname'
+                  label='Full Name'
+                  control={control}
+                  required
+                  errors={errors}
+                >
+                  <InputText type='text' style={{ width: '100%' }} />
+                </Field>
+              </div>
+            </div>
+            <div className='grid' id='width-100-center-signup'>
+              <div className='col-12' id='width-100-center-signup'>
+                <Field
+                  name='phone'
+                  label='Phone Number'
+                  control={control}
+                  required
+                  errors={errors}
+                >
+                  <InputText type='text' style={{ width: '100%' }} />
+                </Field>
+              </div>
+            </div>
+            <div className='grid' id='width-100-center-signup'>
+              <div className='col-12' id='width-100-center-signup'>
+                <Field
+                  name='email'
+                  label='Email address'
+                  control={control}
+                  required
+                  errors={errors}
+                >
+                  <InputText type='text' style={{ width: '100%' }} />
+                </Field>
+              </div>
+            </div>
+            <div className='grid' id='accept-signup'>
+              <div className='col-12' id='checkbox-signup'>
+                <Field name='accept' control={control} errors={errors}>
                   <Checkbox
-                    inputId='remember'
+                    inputId='accept'
                     checked
                     onChange={(e) => onChange(e.checked)}
                   />
                 </Field>
               </div>
-              <div className='col-6' id='forgot-title'>
-                <Link href='/landing'>Forgot password?</Link>
+              <div id='text-accept-signup'>
+                I accept the terms and conditions
+              </div>
+            </div>
+            <div className='grid' id='width-100-center-signup'>
+              <div className='col-12' id='width-100-center-signup'>
+                <Field
+                  name='roleName'
+                  control={control}
+                  required
+                  errors={errors}
+                >
+                  <SelectButton
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    optionLabel='name'
+                    options={items}
+                  />
+                </Field>
               </div>
             </div>
             <div className='grid'>

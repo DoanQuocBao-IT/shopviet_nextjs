@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 import { Button } from 'primereact/button'
 import { Ripple } from 'primereact/ripple'
-import { InputText } from 'primereact/inputtext'
+import apiInstance from '../../api/apiInstance'
 import { useRouter } from 'next/router'
 import { SlideMenu } from 'primereact/slidemenu'
 import { Badge } from 'primereact/badge'
@@ -20,8 +20,26 @@ const Topbar = () => {
   const avatarLabel = store.getState().auth.firstname
     ? store.getState().auth.firstname[0].toUpperCase()
     : 'B'
+  const ROLE_IDS = {
+    ADMIN: 1,
+    SELLER: 2,
+    DELIVERER: 3,
+    CUSTOMER: 4,
+  }
+
+  const roles = store.getState().auth.roles
+
+  function hasRole(roleId) {
+    return roles ? roles.some((role) => role.id === roleId) : false
+  }
+
+  const hasAdminRole = hasRole(ROLE_IDS.ADMIN)
+  const hasSellerRole = hasRole(ROLE_IDS.SELLER)
+  const hasDelivererRole = hasRole(ROLE_IDS.DELIVERER)
+  const hasCustomerRole = hasRole(ROLE_IDS.CUSTOMER)
 
   const router = useRouter()
+  const [categories, setCategories] = useState([])
   const [windowWidth, setWindowWidth] = useState(0)
   useEffect(() => {
     const handleResize = () => {
@@ -37,15 +55,15 @@ const Topbar = () => {
   useEffect(() => {
     if (router.pathname === '/') {
       setActiveIndex(0)
-    } else if (router.pathname.startsWith('/homepage')) {
-      setActiveIndex(1)
     } else if (router.pathname.startsWith('/flashsale')) {
-      setActiveIndex(2)
+      setActiveIndex(1)
     } else if (router.pathname.startsWith('/product')) {
+      setActiveIndex(2)
+    } else if (router.pathname.startsWith('/dashboard-admin')) {
       setActiveIndex(3)
-    } else if (router.pathname.startsWith('/category')) {
+    } else if (router.pathname.startsWith('/dashboard-seller')) {
       setActiveIndex(4)
-    } else if (router.pathname.startsWith('/dashboard')) {
+    } else if (router.pathname.startsWith('/dashboard-deliverer')) {
       setActiveIndex(5)
     } else if (router.pathname === '/login') {
       setActiveIndex(6)
@@ -120,169 +138,205 @@ const Topbar = () => {
 
   const menu = [
     {
-      id: 1,
       label: ' Homepage',
       icon: 'fas fa-home',
       to: '/',
       command: () => handleClick('/'),
     },
     {
-      id: 2,
       label: 'Flash Sale',
       icon: 'fas fa-bolt',
       to: '/flashsale',
       command: () => handleClick('/flashsale'),
     },
     {
-      id: 3,
       label: 'Product',
       icon: 'fas fa-home',
       to: '/product',
       command: () => handleClick('/product'),
     },
+  ]
+  const roleConfig = [
     {
-      id: 4,
-      label: 'Category',
-      icon: 'fas fa-home',
-      to: '/landing',
-      command: () => handleClick('/category'),
+      role: hasAdminRole,
+      label: 'Admin',
+      icon: 'fas fa-user-shield',
+      to: '/dashboard-admin',
+    },
+    {
+      role: hasSellerRole,
+      label: 'Seller',
+      icon: 'fas fa-user-tie',
+      to: '/dashboard-seller',
+    },
+    {
+      role: hasDelivererRole,
+      label: 'Deliverer',
+      icon: 'fas fa-user-tag',
+      to: '/dashboard-deliverer',
     },
   ]
+  roleConfig.forEach((item) => {
+    if (item.role) {
+      menu.push({
+        label: item.label,
+        icon: item.icon,
+        to: item.to,
+        command: () => handleClick(item.to),
+      })
+    }
+  })
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+  const fetchCategories = async () => {
+    try {
+      const res = await apiInstance.get(`/shopviet/allCat`)
+      const data = res.data
+      console.log('data cate', data)
+      setCategories(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
-    <div id='centered-content'>
-      <div id='start-menu-container'>
-        <div id='logo-container'>
-          <Link href='/'>
-            <img src={`/layout/images/logo.png`} alt='' />
-          </Link>
+    <div id='header-content'>
+      <div id='centered-content'>
+        <div id='start-menu-container'>
+          <div id='logo-container'>
+            <Link href='/'>
+              <img src={`/layout/images/logo.png`} alt='' />
+            </Link>
+          </div>
+          <Search />
         </div>
-        <Search />
-      </div>
-      {windowWidth > 500 ? (
-        <div id='menu-container'>
-          <TabMenu
-            id='menubar-topbar'
-            model={item(menu)}
-            activeIndex={activeIndex}
-            onTabChange={(e) => setActiveIndex(e.index)}
-          />
-        </div>
-      ) : (
-        <div id='menu-container'>
-          <SlideMenu
-            ref={menuHeader}
-            model={menu}
-            popup
-            viewportHeight={370}
-            menuWidth={250}
-          ></SlideMenu>
-
-          <Button
-            type='button'
-            icon='pi pi-bars icon-large'
-            severity='secondary'
-            raised
-            label='Menu'
-            onClick={(event) => menuHeader.current.toggle(event)}
-          ></Button>
-        </div>
-      )}
-      {/* <div id='menu-container'>
-        <Menubar menu={menu} />
-      </div> */}
-      {!isAuthenticated ? (
-        <div id='end-menu-container'>
-          <Link href='/signin'>
-            <Button
-              id={
-                activeIndex == 6
-                  ? 'topbar-button-login-active'
-                  : 'topbar-button-login'
-              }
-              type='button'
-              label='Sign in'
-              severity='warning'
-              raised
-              onClick={() => {
-                setActiveIndex(6)
-              }}
+        {windowWidth > 500 ? (
+          <div id='menu-container'>
+            <TabMenu
+              id='menubar-topbar'
+              model={item(menu)}
+              activeIndex={activeIndex}
+              onTabChange={(e) => setActiveIndex(e.index)}
             />
-          </Link>
-          <Link href='/signup'>
-            <Button
-              id={
-                activeIndex == 7
-                  ? 'topbar-button-login-active'
-                  : 'topbar-button-login'
-              }
-              type='button'
-              label='Sign up'
-              severity='warning'
-              outlined
-              onClick={() => {
-                setActiveIndex(7)
-              }}
-            />
-          </Link>
-        </div>
-      ) : (
-        <div id='end-menu-container'>
-          <i
-            className='fas fa-cart-plus'
-            style={{
-              fontSize: '2rem',
-              paddingTop: '0.5rem',
-              width: '3rem',
-              height: '3rem',
-              textAlign: 'center',
-              backgroundColor: '#FFE49E',
-              borderRadius: '50%',
-              color: '#000000',
-            }}
-          >
-            <Badge value='1'></Badge>
-          </i>
-          <Link href='/user/profile'>
-            <Avatar
-              style={{ border: '1px solid #ffffff' }}
-              size='large'
-              shape='circle'
-              label={!avatarImage ? avatarLabel : null}
-              image={avatarImage}
-            />
-          </Link>
-          <div>
+          </div>
+        ) : (
+          <div id='menu-container'>
             <SlideMenu
-              ref={menu}
-              model={end_items}
+              ref={menuHeader}
+              model={menu}
               popup
-              viewportHeight={284}
+              viewportHeight={370}
               menuWidth={250}
             ></SlideMenu>
 
+            <Button
+              type='button'
+              icon='pi pi-bars icon-large'
+              severity='secondary'
+              raised
+              label='Menu'
+              onClick={(event) => menuHeader.current.toggle(event)}
+            ></Button>
+          </div>
+        )}
+        {!isAuthenticated ? (
+          <div id='end-menu-container'>
+            <Link href='/signin'>
+              <Button
+                id={
+                  activeIndex == 6
+                    ? 'topbar-button-login-active'
+                    : 'topbar-button-login'
+                }
+                type='button'
+                label='Sign in'
+                severity='warning'
+                raised
+                onClick={() => {
+                  setActiveIndex(6)
+                }}
+              />
+            </Link>
+            <Link href='/signup'>
+              <Button
+                id={
+                  activeIndex == 7
+                    ? 'topbar-button-login-active'
+                    : 'topbar-button-login'
+                }
+                type='button'
+                label='Sign up'
+                severity='warning'
+                outlined
+                onClick={() => {
+                  setActiveIndex(7)
+                }}
+              />
+            </Link>
+          </div>
+        ) : (
+          <div id='end-menu-container'>
             <i
-              // down icon
-              className='fas fa-chevron-down'
-              title='Settings menu'
+              className='fas fa-cart-plus'
               style={{
-                fontSize: '1rem',
+                fontSize: '2rem',
+                paddingTop: '0.5rem',
+                width: '3rem',
+                height: '3rem',
                 textAlign: 'center',
                 backgroundColor: '#FFE49E',
                 borderRadius: '50%',
+                color: '#000000',
               }}
-              onClick={(event) => menu.current.toggle(event)}
-            ></i>
+            >
+              <Badge value='1'></Badge>
+            </i>
+            <Link href='/user/profile'>
+              <Avatar
+                style={{ border: '1px solid #ffffff' }}
+                size='large'
+                shape='circle'
+                label={!avatarImage ? avatarLabel : null}
+                image={avatarImage}
+              />
+            </Link>
+            <div>
+              <SlideMenu
+                ref={menu}
+                model={end_items}
+                popup
+                viewportHeight={284}
+                menuWidth={250}
+              ></SlideMenu>
+
+              <i
+                className='fas fa-chevron-down'
+                title='Settings menu'
+                style={{
+                  fontSize: '1rem',
+                  textAlign: 'center',
+                  backgroundColor: '#FFE49E',
+                  borderRadius: '50%',
+                }}
+                onClick={(event) => menu.current.toggle(event)}
+              ></i>
+            </div>
           </div>
-        </div>
-      )}
-      {/*    
-      <div id='end-menu-container'></div>
-      <Menubar
-        model={processModels(items)}
-        start={startMenu}
-        end={endMenuGuest}
-      /> */}
+        )}
+      </div>
+      <div id='bottom-menu-container'>
+        {categories.map((item, index) => (
+          <div id='bottom-menu-item'>
+            <Link
+              className='link-decorations'
+              href={`/product?category=${item.id}`}
+            >
+              {item.name}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

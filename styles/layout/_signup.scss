@@ -45,6 +45,20 @@
     display: flex;
     justify-content: space-between;
 }
+#accept-signup {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+#checkbox-signup {
+    width: 10%;
+    text-align: center;
+}
+#text-accept-signup {
+    width: 70%;
+    text-align: center;
+}
 #top-8-signup {
     margin-top: 8rem;
     margin-bottom: 8rem;

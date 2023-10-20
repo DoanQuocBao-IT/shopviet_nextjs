@@ -1,0 +1,9 @@
+.p-menuitem-link:hover {
+    border-radius: 50px;
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+    background-color: #df6243;
+    color: #81311d;
+    border: none;
+    transition: border-radius 0.7s ease;
+  }

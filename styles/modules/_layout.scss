@@ -27,6 +27,20 @@ body, html {
     padding: 1rem;
     width: 100%;
 }
+.layout-content-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 1rem;
+    width: 20%;
+}
+.layout-content-flex {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 90%;
+}
 main {
     flex: 1;
     width: 100%;

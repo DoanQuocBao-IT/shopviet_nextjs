@@ -27,29 +27,46 @@ apiInstance.interceptors.request.use(
 apiInstance.interceptors.response.use(
   function (response) {
     console.log('response', response)
-    const originalRequest = response.config
-    if (response.status == 401 && !originalRequest._retry) {
-      originalRequest._retry = true
-      const state = store.getState()
-      const refreshToken = state.auth.refreshToken
-      return apiInstance
-        .post('/auth/refresh-token', { refreshToken: refreshToken })
-        .then((res) => {
-          if (res.status == 200) {
-            store.dispatch({
-              type: 'REFRESH_TOKEN',
-              accessToken: res.data.accessToken,
-              refreshToken: refreshToken,
-            })
-            console.log('Access token refreshed!')
-            return apiInstance(originalRequest)
-          }
-        })
-    }
     console.log('response interceptor')
     return response
   },
-  function (error) {
+  async function (error) {
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !error.config._retry
+    ) {
+      console.log('Attempting token refresh...')
+      error.config._retry = true
+      const state = store.getState()
+      const refreshToken = state.auth.refreshToken
+      const data = {
+        refreshToken: refreshToken,
+      }
+      const jsonString = JSON.stringify(data)
+      return await apiInstance
+        .post('/auth/refresh-token', jsonString)
+        .then((res) => {
+          if (res.status === 200) {
+            store.dispatch({
+              type: 'auth/login',
+              payload: {
+                accessToken: res.data.accessToken,
+                refreshToken: refreshToken,
+              },
+            })
+            console.log('Access token refreshed!')
+            return apiInstance.request(error.config)
+          }
+        })
+        .catch((err) => {
+          console.log('Refresh token failed!')
+          store.dispatch({
+            type: 'auth/logout',
+          })
+          return Promise.reject(error)
+        })
+    }
     return Promise.reject(error)
   }
 )

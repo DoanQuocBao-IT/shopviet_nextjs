@@ -359,7 +359,7 @@ const ProductPage = () => {
           <div id='brand-product-container'>
             {brand.products.map((product) => (
               <div id='image-product-brand'>
-                <Link href={`/products/product/${product.product_id}`}>
+                <Link href={`/products/product-detail/${product.id}`}>
                   <img src={product.image} alt={product.name} />
                   <div id='discount-product-brand'>
                     <span>-{product.sale}%</span>
@@ -399,7 +399,7 @@ const ProductPage = () => {
         {products.map((item, index) => (
           <Link
             className='link-decorations'
-            href={`/products/product/${item.product_id}`}
+            href={`/products/product-detail/${item.id}`}
           >
             <div id='list-product-container'>
               <div id='image-product-container'>

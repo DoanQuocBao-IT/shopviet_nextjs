@@ -20,12 +20,6 @@ const SignUpPage = () => {
   const defaultValues = {
     checked: false,
   }
-  const {
-    watch,
-    control,
-    formState: { errors },
-    handleSubmit,
-  } = useForm()
   const onSubmit = (data) => {
     handleRegister(data)
   }
@@ -38,8 +32,12 @@ const SignUpPage = () => {
       if (response.status === 200) {
         showToast('success', 'Register successfully', 'Success')
         router.push('/signin')
-      }else{
-        showToast('warn', 'Confirm account information email', response.data.detail)
+      } else {
+        showToast(
+          'warn',
+          'Confirm account information email',
+          response.data.detail
+        )
       }
     } catch (error) {
       showToast('error', 'Register failed', 'Error')
@@ -58,89 +56,53 @@ const SignUpPage = () => {
         <div id='signup-title'>
           <h1>Welcome back to Rareblocks UI Kit</h1>
         </div>
-        <Form onSubmit={handleSubmit(onSubmit)} defaultValues={defaultValues}>
+        <Form onSubmit={onSubmit} defaultValues={defaultValues}>
           <div id='form'>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='username'
-                  label='Username'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='username' label='Username' required>
                   <InputText type='text' style={{ width: '100%' }} />
                 </Field>
               </div>
             </div>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='password'
-                  label='Password'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='password' label='Password' required>
                   <Password type='password' style={{ width: '100%' }} />
                 </Field>
               </div>
             </div>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='confirmPassword'
-                  label='Confirm Password'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='confirmPassword' label='Confirm Password' required>
                   <Password type='password' style={{ width: '100%' }} />
                 </Field>
               </div>
             </div>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='fname'
-                  label='Full Name'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='fname' label='Full Name' required>
                   <InputText type='text' style={{ width: '100%' }} />
                 </Field>
               </div>
             </div>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='phone'
-                  label='Phone Number'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='phone' label='Phone Number' required>
                   <InputText type='text' style={{ width: '100%' }} />
                 </Field>
               </div>
             </div>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='email'
-                  label='Email address'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='email' label='Email address' required>
                   <InputText type='text' style={{ width: '100%' }} />
                 </Field>
               </div>
             </div>
             <div className='grid' id='accept-signup'>
               <div className='col-12' id='checkbox-signup'>
-                <Field name='accept' control={control} errors={errors}>
+                <Field name='accept'>
                   <Checkbox
                     inputId='accept'
                     checked
@@ -154,12 +116,7 @@ const SignUpPage = () => {
             </div>
             <div className='grid' id='width-100-center-signup'>
               <div className='col-12' id='width-100-center-signup'>
-                <Field
-                  name='roleName'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='roleName' required>
                   <SelectButton
                     value={value}
                     onChange={(e) => setValue(e.value)}

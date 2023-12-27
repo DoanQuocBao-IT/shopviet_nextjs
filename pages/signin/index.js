@@ -18,25 +18,20 @@ const SignInPage = () => {
   const [initialValues, setInitialValues] = useState({})
   const setLoading = useContext(LoadingContext)
   const showToast = useToast().showToast
-  const router=useRouter()
-  
-  const {
-    watch,
-    control,
-    formState: { errors },
-    handleSubmit,
-  } = useForm()
+  const router = useRouter()
+
   useEffect(() => {
     setLoading(true)
     setIsAuthenticated(store.getState().auth.isAuthenticated)
-    setInitialValues({
-      username: localStorage.getItem('username') || '',
-      password: localStorage.getItem('password') || '',
-      remember: true,
-    })
     if (isAuthenticated) {
       router.push('/landing')
       setLoading(false)
+    } else {
+      setInitialValues({
+        username: localStorage.getItem('username') || '',
+        password: localStorage.getItem('password') || '',
+        remember: true,
+      })
     }
     setLoading(false)
   }, [isAuthenticated])
@@ -63,12 +58,12 @@ const SignInPage = () => {
       })
       console.log('response', response)
       if (response.status === 200) {
-        const { accessToken, refreshToken, fullName, image, roles } =
+        const { accessToken, refreshToken, id, fullName, image, roles } =
           response.data
         console.log('accessToken', accessToken)
         console.log('refreshToken', refreshToken)
         store.dispatch(
-          login({ accessToken, refreshToken, image, fullName, roles })
+          login({ accessToken, refreshToken, id, image, fullName, roles })
         )
         setIsAuthenticated(store.getState().auth.isAuthenticated)
         showToast('success', 'Đăng nhập thành công ', response.data.detail)
@@ -94,17 +89,11 @@ const SignInPage = () => {
         <div id='signin-title'>
           <h1>Welcome back to Rareblocks UI Kit</h1>
         </div>
-        <Form onSubmit={handleSubmit(onSubmit)} defaultValues={initialValues}>
+        <Form onSubmit={onSubmit} initialValue={initialValues}>
           <div id='form'>
             <div className='grid' id='width-100-center'>
               <div className='col-12' id='width-100-center'>
-                <Field
-                  name='username'
-                  label='Email address'
-                  control={control}
-                  required
-                  errors={errors}
-                >
+                <Field name='username' label='Email address' required>
                   <InputText type='text' style={{ width: '100%' }} />
                 </Field>
               </div>
@@ -114,9 +103,7 @@ const SignInPage = () => {
                 <Field
                   name='password'
                   label='Password(8 characters minimum)'
-                  control={control}
                   required
-                  errors={errors}
                 >
                   <Password type='password' style={{ width: '100%' }} />
                 </Field>
@@ -124,12 +111,7 @@ const SignInPage = () => {
             </div>
             <div className='grid' id='top-1'>
               <div className='col-6' id='checkbox'>
-                <Field
-                  name='remember'
-                  label='Remember me'
-                  control={control}
-                  errors={errors}
-                >
+                <Field name='remember' label='Remember me'>
                   <Checkbox
                     inputId='remember'
                     checked

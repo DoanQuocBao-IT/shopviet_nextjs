@@ -1,0 +1,33 @@
+#info-profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#info-user-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+#info-user-image {
+    width: 10rem;
+    height: 10rem;
+}
+#info-user-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 0.2rem solid var(--color-black);
+    object-fit: cover;
+}
+#follow-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}

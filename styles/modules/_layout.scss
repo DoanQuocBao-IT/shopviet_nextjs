@@ -1,5 +1,8 @@
 body {
     font-family: $fontFamily;
+    --color-gray: #f5f5f5;
+    --color-black: #000000;
+    --color-white: #ffffff;
 }
 html {
     font-size: 16px;
@@ -45,4 +48,8 @@ main {
     flex: 1;
     width: 100%;
 }
-
+@media (max-width: 1440px) {
+    .p-menuitem-icon {
+        font-size: 2rem;
+    }
+}

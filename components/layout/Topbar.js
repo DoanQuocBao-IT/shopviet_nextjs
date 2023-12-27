@@ -62,12 +62,12 @@ const Topbar = () => {
     } else if (router.pathname.startsWith('/dashboard-admin')) {
       setActiveIndex(3)
     } else if (router.pathname.startsWith('/dashboard-seller')) {
-      setActiveIndex(4)
+      setActiveIndex(3)
     } else if (router.pathname.startsWith('/dashboard-deliverer')) {
-      setActiveIndex(5)
-    } else if (router.pathname === '/login') {
+      setActiveIndex(3)
+    } else if (router.pathname === '/signin') {
       setActiveIndex(6)
-    } else if (router.pathname === '/register') {
+    } else if (router.pathname === '/signup') {
       setActiveIndex(7)
     } else {
       setActiveIndex(8)
@@ -77,7 +77,7 @@ const Topbar = () => {
     model.map((item, i) => {
       let menuitem = {
         id: item.id,
-        label: windowWidth < 1366 ? null : item.label,
+        label: windowWidth < 1440 ? null : item.label,
         icon: item.icon,
         command: item.command,
         to: item.to,
@@ -152,8 +152,8 @@ const Topbar = () => {
     {
       label: 'Product',
       icon: 'fas fa-home',
-      to: '/product',
-      command: () => handleClick('/product'),
+      to: '/products',
+      command: () => handleClick('/products'),
     },
   ]
   const roleConfig = [
@@ -191,9 +191,8 @@ const Topbar = () => {
   }, [])
   const fetchCategories = async () => {
     try {
-      const res = await apiInstance.get(`/shopviet/allCat`)
+      const res = await apiInstance.get(`/shopviet/categories`)
       const data = res.data
-      console.log('data cate', data)
       setCategories(data)
     } catch (err) {
       console.log(err)
@@ -242,7 +241,7 @@ const Topbar = () => {
         )}
         {!isAuthenticated ? (
           <div id='end-menu-container'>
-            <Link href='/signin'>
+            <Link href='/signin' className='link-decorations'>
               <Button
                 id={
                   activeIndex == 6
@@ -258,7 +257,7 @@ const Topbar = () => {
                 }}
               />
             </Link>
-            <Link href='/signup'>
+            <Link href='/signup' className='link-decorations'>
               <Button
                 id={
                   activeIndex == 7
@@ -277,21 +276,22 @@ const Topbar = () => {
           </div>
         ) : (
           <div id='end-menu-container'>
-            <i
-              className='fas fa-cart-plus'
-              style={{
-                fontSize: '2rem',
-                paddingTop: '0.5rem',
-                width: '3rem',
-                height: '3rem',
-                textAlign: 'center',
-                backgroundColor: '#FFE49E',
-                borderRadius: '50%',
-                color: '#000000',
-              }}
-            >
-              <Badge value='1'></Badge>
-            </i>
+            <Link href='/cart' className='link-decorations'>
+              <i
+                className='fas fa-cart-plus'
+                style={{
+                  fontSize: '2rem',
+                  paddingTop: '0.5rem',
+                  width: '3rem',
+                  height: '3rem',
+                  textAlign: 'center',
+                  backgroundColor: '#FFE49E',
+                  borderRadius: '50%',
+                  color: '#000000',
+                }}
+              ></i>
+            </Link>
+
             <Link href='/user/profile'>
               <Avatar
                 style={{ border: '1px solid #ffffff' }}

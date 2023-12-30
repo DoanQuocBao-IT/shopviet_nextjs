@@ -1,139 +1,147 @@
 #signup-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: auto;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #signup-form {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 8rem;
-
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2rem;
 }
 #signup-form Form {
-    width: 35rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 #signup-title {
-    font-style: bold;
-    width: 35rem;
-    height: auto;
-    font-size: 1.5rem;
-    text-align: center;
+  font-style: bold;
+  width: 35rem;
+  height: auto;
+  font-size: 1.5rem;
+  text-align: center;
 }
-#signup-title h1{
-    
+#signup-title h1 {
 }
 #form {
-    width:25rem
+  width: 25rem;
 }
 
 #width-100-center-signup {
-    width: 100%;
-    text-align: center;
-    margin-top: 2rem;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
 }
 #top-1-signup {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 #accept-signup {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 #checkbox-signup {
-    width: 10%;
-    text-align: center;
+  width: 10%;
+  text-align: center;
 }
 #text-accept-signup {
-    width: 70%;
-    text-align: center;
+  width: 70%;
+  text-align: center;
 }
 #top-8-signup {
-    margin-top: 8rem;
-    margin-bottom: 8rem;
+  margin: 1rem 0 1rem 0;
 }
-#checkbox{
-    color: black;
-    text-decoration: none;
-    width: 10rem;
+#checkbox {
+  color: black;
+  text-decoration: none;
+  width: 10rem;
 }
-#signin-title a{
-    color: black;
-    text-decoration: none;
-    width: 10rem;
+#signin-title {
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
 }
-#signin-title a{
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    width: 10rem;
+#signin-title a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  width: auto;
 }
-.field-wrapper{
-    width:100%;
+.field-wrapper {
+  width: 100%;
 }
-.p-password-input{
-    width:100%;
-    height: 3rem;
+.p-password-input {
+  width: 100%;
+  height: 3rem;
 }
-.p-inputtext{
-    width:100%;
-    height: 3rem;
+.p-inputtext {
+  width: 100%;
+  height: 3rem;
 }
 #multi-color-border-login {
-    position: relative; 
-    width: 100%;
-    height: 3rem;
-    color: white; /* Màu chữ cho button */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px; /* Bạn cũng có thể thêm bo tròn cho button nếu muốn */
-    position: relative; /* hoặc absolute, fixed, hoặc sticky tùy theo ngữ cảnh của bạn */
-    z-index: 1;
-    margin: 4rem 0 0 0;
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  color: white; /* Màu chữ cho button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px; /* Bạn cũng có thể thêm bo tròn cho button nếu muốn */
+  position: relative; /* hoặc absolute, fixed, hoặc sticky tùy theo ngữ cảnh của bạn */
+  z-index: 1;
+  margin: 4rem 0 0 0;
 }
-#multi-color-border-login >button {
-    width: 100%;
-    height: 3rem;
-    border-radius: 10px;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    border-color: black ;
+#multi-color-border-login > button {
+  width: 100%;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-color: black;
 }
 
 #multi-color-border-login::before {
-    content: "";
-    position: absolute;
-    top: -2px; /* Đặt giá trị âm bằng độ dày viền */
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border: 5px solid;
-    border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-    border-image-slice: 1;
-    z-index: -1; /* Đảm bảo bóng màu nằm dưới button */
+  content: "";
+  position: absolute;
+  top: -2px; /* Đặt giá trị âm bằng độ dày viền */
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 5px solid;
+  border-image-source: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  border-image-slice: 1;
+  z-index: -1; /* Đảm bảo bóng màu nằm dưới button */
 
-    filter: blur(15px); /* Giảm giá trị blur để bóng màu không lệch quá xa */
+  filter: blur(15px); /* Giảm giá trị blur để bóng màu không lệch quá xa */
 }
 #button-dark {
-    background-color: #000000;
-    color: #ffffff;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 #signup-slogan {
-    width: 40%;
-    background-color: #000000;
-    height: 40rem;
+  width: 40%;
+  background-color: #000000;
+  height: 40rem;
 }

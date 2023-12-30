@@ -87,7 +87,7 @@ const SignInPage = () => {
     <div id='signin-container'>
       <div id='signin-form'>
         <div id='signin-title'>
-          <h1>Welcome back to Rareblocks UI Kit</h1>
+          <h1>Welcome back to ShopViet</h1>
         </div>
         <Form onSubmit={onSubmit} initialValue={initialValues}>
           <div id='form'>

@@ -54,7 +54,7 @@ const SignUpPage = () => {
     <div id='signup-container'>
       <div id='signup-form'>
         <div id='signup-title'>
-          <h1>Welcome back to Rareblocks UI Kit</h1>
+          <h1>Welcome back to ShopViet</h1>
         </div>
         <Form onSubmit={onSubmit} defaultValues={defaultValues}>
           <div id='form'>

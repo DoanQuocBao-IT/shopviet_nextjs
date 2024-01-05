@@ -48,25 +48,25 @@ const SignInPage = () => {
         localStorage.removeItem('username')
         localStorage.removeItem('password')
       }
-      console.log(data)
       let { remember, ...rest } = data
-      console.log('rest', rest)
-      const response = await apiInstance.post('/auth/login', rest, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      const response = await apiInstance.post('/auth/login', rest)
       console.log('response', response)
       if (response.status === 200) {
-        const { accessToken, refreshToken, id, fullName, image, roles } =
-          response.data
-        console.log('accessToken', accessToken)
-        console.log('refreshToken', refreshToken)
-        store.dispatch(
-          login({ accessToken, refreshToken, id, image, fullName, roles })
-        )
-        setIsAuthenticated(store.getState().auth.isAuthenticated)
-        showToast('success', 'Đăng nhập thành công ', response.data.detail)
+        if (response.data.code === 400) {
+          showToast(
+            'error',
+            'Đăng nhập thất bại',
+            response.data.message || 'Vui lòng đăng nhập lại'
+          )
+        } else if (response.data.code === 200) {
+          const { id, full_name, image, roles, access_token, refresh_token } =
+            response.data.data
+          store.dispatch(
+            login({ access_token, refresh_token, id, image, full_name, roles })
+          )
+          setIsAuthenticated(store.getState().auth.isAuthenticated)
+          showToast('success', 'Đăng nhập thành công ', response.data.message)
+        }
         setLoading(false)
       }
     } catch (error) {

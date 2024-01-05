@@ -12,7 +12,7 @@ const apiInstance = axios.create({
 apiInstance.interceptors.request.use(
   function (config) {
     const state = store.getState()
-    const token = state.auth.accessToken
+    const token = state.auth.access_token;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -39,9 +39,9 @@ apiInstance.interceptors.response.use(
       console.log('Attempting token refresh...')
       error.config._retry = true
       const state = store.getState()
-      const refreshToken = state.auth.refreshToken
+      const refresh_token = state.auth.refresh_token
       const data = {
-        refreshToken: refreshToken,
+        refresh_token: refresh_token,
       }
       const jsonString = JSON.stringify(data)
       return await apiInstance
@@ -51,8 +51,8 @@ apiInstance.interceptors.response.use(
             store.dispatch({
               type: 'auth/login',
               payload: {
-                accessToken: res.data.accessToken,
-                refreshToken: refreshToken,
+                access_token: res.data.access_token,
+                refresh_token: refresh_token,
               },
             })
             console.log('Access token refreshed!')

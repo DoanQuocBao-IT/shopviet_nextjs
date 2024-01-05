@@ -192,7 +192,7 @@ const Topbar = () => {
   const fetchCategories = async () => {
     try {
       const res = await apiInstance.get(`/shopviet/categories`)
-      const data = res.data
+      const data = res.data.data
       setCategories(data)
     } catch (err) {
       console.log(err)

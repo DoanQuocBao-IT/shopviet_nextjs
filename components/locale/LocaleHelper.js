@@ -10,7 +10,22 @@ function formatNumber(number, locale = defaultLocale) {
   return new Intl.NumberFormat(locale).format(number)
 }
 
+function formatDate(date, locale = defaultLocale) {
+  return new Intl.DateTimeFormat(locale).format(date)
+}
+
+function formatDateTime(date, locale = defaultLocale) {
+  if (date instanceof Date && !isNaN(date.getTime())) {
+    return new Intl.DateTimeFormat(locale, {
+      dateStyle: 'short',
+      timeStyle: 'medium',
+    }).format(date)
+  }
+  return date
+}
 
 export default {
   formatNumber,
+  formatDateTime,
+  formatDate,
 }

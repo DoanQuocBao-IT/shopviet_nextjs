@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  accessToken: null,
-  refreshToken: null,
+  access_token: null,
+  refresh_token: null,
   id: null,
   image: null,
-  fullName: null,
+  full_name: null,
   roles: null,
   isAuthenticated: false,
 }
@@ -14,20 +14,20 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login(state, action) {
-      state.accessToken = action.payload.accessToken
-      state.refreshToken = action.payload.refreshToken
+      state.access_token = action.payload.access_token
+      state.refresh_token = action.payload.refresh_token
       state.id = action.payload.id
       state.image = action.payload.image
-      state.fullName = action.payload.fullName
+      state.full_name = action.payload.full_name
       state.roles = action.payload.roles
       state.isAuthenticated = true
     },
     logout(state) {
-      state.accessToken = null
-      state.refreshToken = null
+      state.access_token = null
+      state.refresh_token = null
       state.id = null
       state.image = null
-      state.fullName = null
+      state.full_name = null
       state.roles = null
       state.isAuthenticated = false
     },

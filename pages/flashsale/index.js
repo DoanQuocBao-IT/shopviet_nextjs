@@ -7,6 +7,7 @@ import apiInstance from '../../api/apiInstance'
 import { TabMenu } from 'primereact/tabmenu'
 import { Carousel } from 'primereact/carousel'
 import Title from '../../components/Title'
+import Menu from '../../components/layout/Menu'
 
 const FlashSalePage = () => {
   const [products, setProducts] = useState([])
@@ -41,9 +42,8 @@ const FlashSalePage = () => {
 
   const fetchCategory = async () => {
     try {
-      const response = await apiInstance.get(`/shopviet/all/category`)
-      const data = response.data
-      console.log(response.data)
+      const response = await apiInstance.get(`/shopviet/categories`)
+      const data = response.data.data
       if (response.status == 200) {
         setCategory(data)
       }
@@ -57,9 +57,9 @@ const FlashSalePage = () => {
   const fetchProducts = async () => {
     try {
       const response = await apiInstance.get(
-        `/shopviet/allProd?sort=${sort}&per_page=${per_page}&current_page=${current_page}`
+        `/shopviet/product?sort=${sort}&per_page=${per_page}&current_page=${current_page}&category_id=0`
       )
-      const data = response.data
+      const data = response.data.data
       console.log(response.data)
       if (response.status == 200) {
         setProducts(data.products)
@@ -133,11 +133,14 @@ const FlashSalePage = () => {
       </Link>
     )
   }
+  const onTabChange = (e) => {
+    console.log(e)
+  }
   return (
     <div className='layout-content'>
       <div className='layout-content-flex'>
         <div className='layout-content-menu'>
-          {category.map((item) => (
+          {/* {category.map((item) => (
             <Link
               className='link-decorations'
               id='category-image-name-container'
@@ -146,7 +149,8 @@ const FlashSalePage = () => {
               <img src={item.image} alt={item.name} />
               {item.name}
             </Link>
-          ))}
+          ))} */}
+          <Menu onTabChange={onTabChange} />
         </div>
         <div className='layout-content'>
           <div id='tabmenu-container'>Sản phẩm bán chạy</div>

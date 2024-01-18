@@ -1,0 +1,123 @@
+#profile-seller-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+#name-image-seller-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 30%;
+    height: 100%;
+    background-image: url("https://down-ws-vn.img.susercontent.com/519193eb165324541f467893fdc68765_tn");
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(0.2px);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+#image-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+}
+#image-seller-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
+#image-seller-container img {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 0.2rem solid $gray-color;
+}
+#name-seller-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+#name-seller-container h2 {
+    color: $white-color;
+}
+#follow-chat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+}
+#info-seller-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 30%;
+    height: 100%;
+}
+#info-profile-seller i {
+    margin: 0.5rem;
+}
+#button-seller {
+    width: auto;
+    min-width: 10rem;
+    height: 2rem;
+}
+
+
+#form-item-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    margin: 1.5rem 0;
+}
+#header-upload-type-product {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-left: auto;
+}
+#body-upload-type-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+}
+#image-upload-type-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+}
+#background-club-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+}
+#background-club-container img {
+    width: 16rem;
+    height: 9rem;
+    border-radius: 0.5rem;
+}
+#file-upload {
+    display: none;
+}

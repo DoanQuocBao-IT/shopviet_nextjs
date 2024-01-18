@@ -160,3 +160,13 @@
     border-radius: 0.2rem;
     font-weight: bold;
 }
+.product-content-container {
+    display: grid;
+    flex-wrap: wrap;
+    grid: auto-flow / repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+
+}

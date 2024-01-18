@@ -1,16 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
+import apiInstance from '../../api/apiInstance'
+import { LoadingContext } from '../../components/contexts/LoadingContext'
+import { useToast } from '../../components/contexts/ToastContext'
+import { TabMenu } from 'primereact/tabmenu'
 import { Paginator } from 'primereact/paginator'
 import Link from 'next/link'
 import LocaleHelper from '../../components/locale/LocaleHelper'
 import Rating from '../../components/Rating'
-import apiInstance from '../../api/apiInstance'
-import { TabMenu } from 'primereact/tabmenu'
-import { Carousel } from 'primereact/carousel'
-import Title from '../../components/Title'
-import { LoadingContext } from '../../components/contexts/LoadingContext'
-import { useToast } from '../../components/contexts/ToastContext'
 
-const ProductPage = () => {
+const Product = () => {
   const [products, setProducts] = useState([])
   const [per_page, setPerPage] = useState(20)
   const [current_page, setCurrentPage] = useState(1)
@@ -18,28 +16,56 @@ const ProductPage = () => {
   const [total_products, setTotalProducts] = useState(1)
   const [first, setFirst] = useState(0)
 
+  const [visibleChange, setVisibleChange] = useState(false)
+  const [visibleEdit, setVisibleEdit] = useState(false)
+
   const [column, setColumn] = useState(5)
   const [activeIndex, setActiveIndex] = useState(0)
   const [sort, setSort] = useState('default')
   const [nameCategory, setNameCategory] = useState('Quang Nam')
   const [brandProducts, setBrandProducts] = useState([])
+  const [product_id, setProductId] = useState(0)
+  const [seller, setSeller] = useState({})
   const setLoading = useContext(LoadingContext)
   const showToast = useToast().showToast
-
+  const [brand, setBrand] = useState([])
+  useEffect(() => {
+    fetchBrands()
+  }, [])
+  const fetchBrands = async () => {
+    setLoading(true)
+    try {
+      const response = await apiInstance.get(`/seller/brand`)
+      const data = response.data
+      if (response.status == 200) {
+        setBrand(
+          data.data.map((item) => ({
+            id: item.id,
+            label: item.name,
+            image: item.image,
+            total_product: item.total_product,
+          }))
+        )
+        fetchProducts(brand[0].id)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+    setLoading(false)
+  }
   useEffect(() => {
     fetchProducts()
   }, [sort, per_page, current_page])
-  const fetchProducts = async () => {
+
+  const fetchProducts = async (brand_id) => {
     setLoading(true)
     try {
       const response = await apiInstance.get(
-        `/shopviet/products?sort=${sort}&per_page=${per_page}&current_page=${current_page}&category_id=0`
+        `/shopviet/products/seller/0/brand/${brand_id}?sort=${sort}&per_page=${per_page}&current_page=${current_page}`
       )
       const data = response.data.data
-      console.log('fadtda', data)
       if (response.status == 200) {
         setProducts(data.data)
-        console.log('data', data.data)
         setPerPage(data.per_page)
         setCurrentPage(data.current_page)
         setTotalPages(data.total_page)
@@ -50,73 +76,29 @@ const ProductPage = () => {
     }
     setLoading(false)
   }
+
   const onPageChange = (event) => {
     setFirst(event.first)
     setCurrentPage(event.page + 1)
     setPerPage(event.rows)
   }
-
-  const items = [
-    { label: 'Popular', sort: 'default' },
-    { label: 'Best Seller', sort: 'soldDesc' },
-    { label: 'New Product', sort: 'newest' },
-    { label: 'Price Low to High', sort: 'priceAsc' },
-    { label: 'Price High to Low', sort: 'priceDesc' },
-  ]
-  const itemTemplate = (brand) => {
-    return (
-      <div id='brand-list-container'>
-        <div id='brand-image-container'>
-          <img src={brand.image} alt={brand.name} />
-        </div>
-        <div id='brand-content-container'>
-          <div>
-            <h4>{brand.name}</h4>
-          </div>
-          <div>
-            <span>{brand.seller}</span>
-          </div>
-          <div id='brand-product-container'>
-            {brand.products.map((product) => (
-              <div id='image-product-brand'>
-                <Link href={`/products/product-detail/${product.id}`}>
-                  <img src={product.image} alt={product.name} />
-                  <div id='discount-product-brand'>
-                    <span>-{product.sale}%</span>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    )
-  }
   return (
     <div className='layout-content'>
-      {/* <div id='category-brand-container'>
-        <Title title={nameCategory} subTitle='' />
-        <Carousel
-          value={brandProducts}
-          numScroll={2}
-          numVisible={2}
-          itemTemplate={itemTemplate}
-          circular={true}
-        />
-      </div> */}
+      <div id='new-product-container'>
+        <h1 id='title-page'>Sản phẩm dang bán</h1>
+      </div>
       <div id='tabmenu-container'>
         <TabMenu
-          model={items}
+          model={brand}
           activeIndex={activeIndex}
           onTabChange={(e) => {
             setActiveIndex(e.index)
-            console.log('sort', items[e.index].sort)
-            setSort(items[e.index].sort)
+            fetchProducts(brand[e.index].id)
           }}
         />
       </div>
-      <div className='product-content-container'>
-      {products.map((item, index) => (
+      <div className='custom-product-content'>
+        {products.map((item, index) => (
           <div id='list-product-container'>
             <div id='image-product-container'>
               <Link
@@ -182,4 +164,4 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage
+export default Product

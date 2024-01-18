@@ -4,31 +4,7 @@ import LocaleHelper from '../../../components/locale/LocaleHelper'
 import Rating from '../../../components/Rating'
 import { Button } from 'primereact/button'
 
-export async function getStaticPaths() {
-  const ids = await fetchProductIds()
-  if (!ids) {
-    return { paths: [], fallback: 'blocking' }
-  }
-  const paths = ids.map((product) => ({
-    params: { id: product.id.toString() },
-  }))
-
-  return {
-    paths,
-    fallback: 'blocking',
-  }
-}
-async function fetchProductIds() {
-  try {
-    const response = await apiInstance.get('/shopviet/products/id')
-    const data = await response.data
-    return data
-  } catch (error) {
-    console.error('Error fetching product IDs:', error)
-    return null
-  }
-}
-export const getStaticProps = async ({ locale, params }) => {
+export const getServerSideProps = async ({ params }) => {
   const product = await getProduct(params.id)
   return {
     props: {
@@ -39,7 +15,7 @@ export const getStaticProps = async ({ locale, params }) => {
 async function getProduct(id) {
   try {
     const response = await apiInstance.get(`/shopviet/product/${id}`)
-    const data = await response.data
+    const data = await response.data.data
     return data
   } catch (error) {
     console.error('Error fetching event details:', error)

@@ -11,7 +11,12 @@ function formatNumber(number, locale = defaultLocale) {
 }
 
 function formatDate(date, locale = defaultLocale) {
-  return new Intl.DateTimeFormat(locale).format(date)
+  if (date instanceof Date && !isNaN(date.getTime())) {
+    return new Intl.DateTimeFormat(locale, {
+      dateStyle: 'short',
+    }).format(date)
+  }
+  return date
 }
 
 function formatDateTime(date, locale = defaultLocale) {

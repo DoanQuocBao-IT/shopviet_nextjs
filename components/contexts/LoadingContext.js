@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { ProgressSpinner } from 'primereact/progressspinner'
+import ProgressSpinner from '../ProgressSpinner'
 
 const LoadingContext = createContext()
 

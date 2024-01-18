@@ -251,7 +251,7 @@ const Topbar = () => {
                 type='button'
                 label='Sign in'
                 severity='warning'
-                raised
+                outlined
                 onClick={() => {
                   setActiveIndex(6)
                 }}

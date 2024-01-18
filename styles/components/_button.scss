@@ -1,9 +1,19 @@
 #topbar-button-login {
-    background-color: $white-color;
-    color: $black-color;
+    // background-color: $white-color;
+    // color: $black-color;
+    // font-size: 1.2rem;
+    // font-weight: 800;
+    // border: 1px solid $black-color;
+    // border-radius: 20px;
+    // padding: 1rem;
+    // height: 2.7rem;
+    // width: 7rem;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     font-size: 1.2rem;
     font-weight: 800;
-    border: 1px solid $black-color;
+    border: 0px solid $black-color;
     border-radius: 20px;
     padding: 1rem;
     height: 2.7rem;
@@ -11,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: $black-color;
 }
 #topbar-button-login:hover {
     background-color: $black-color;
